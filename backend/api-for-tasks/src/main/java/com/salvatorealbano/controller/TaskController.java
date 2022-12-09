@@ -25,32 +25,32 @@ import com.salvatorealbano.model.Task;
 public class TaskController {
 	@GET
     @Path("{id}")
-    public Task findEmployeeById(@PathParam("id") Long id) {
+    public Task findTaskById(@PathParam("id") Long id) {
         return (Task) Task.findByIdOptional(id).orElseThrow(NotFoundException::new);
     }
 
     @GET
-    public List<Task> getAllEmployee() {
+    public List<Task> getAllTasks() {
         return Task.listAll();
     }
 
     @POST
     @Transactional
-    public Task addEmployee(Task employee) {
-        Task.persist(employee);
-               
-        return employee;
+    public Task addTask(Task task) {
+        Task.persist(task);
+
+        return task;
     }
 
     @PUT
     @Path("/{id}")
     @Transactional
     public Task updateTaskReminder(@PathParam("id") Long id, Task task) {
-        Optional<Task> employeeById = Optional.ofNullable(findEmployeeById(id));
-        employeeById.orElseThrow(NotFoundException::new);
-        Task empToUpdate = employeeById.get();
-        empToUpdate.setReminder(task.getReminder());
-        Task.getEntityManager().merge(empToUpdate);
+        Optional<Task> taskById = Optional.ofNullable(findTaskById(id));
+        taskById.orElseThrow(NotFoundException::new);
+        Task taskToUpdate = taskById.get();
+        taskToUpdate.setReminder(task.getReminder());
+        Task.getEntityManager().merge(taskToUpdate);
         return task;
     }
 
