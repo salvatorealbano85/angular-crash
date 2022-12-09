@@ -17,6 +17,12 @@
       "text": "Food Shopping",
       "day": "May 7th at 12:30pm",
       "reminder": false
+    },
+    {
+      "text": "Tennis Lesson",
+      "day": "Dec 9th at 6:30pm",
+      "reminder": true,
+      "id": 4
     }
   ]
 }
